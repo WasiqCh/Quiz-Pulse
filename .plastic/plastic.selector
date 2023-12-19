@@ -1,0 +1,4 @@
+repository "Quiz Pulse@wasickkk@cloud"
+  path "/"
+    br "/main"
+    co "/main"
