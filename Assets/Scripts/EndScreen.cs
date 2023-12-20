@@ -14,7 +14,7 @@ public class EndScreen : MonoBehaviour
     }
     public void showFinalScore()
     {
-        finalScoreText.text = "Congratulations!\n\tYou Scored: " 
+        finalScoreText.text = "Congratulations!\nYou Scored: " 
                                 + scoreCounter.calculateScore();
     }
 }

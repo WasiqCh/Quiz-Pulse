@@ -13,7 +13,7 @@ public class quiz : MonoBehaviour
     [Header("Answers")]
     [SerializeField] GameObject[] answerbutton;
     int corrAnsIndex;
-    bool hasansweredearly;
+    bool hasansweredearly=true;
     [Header("Buttons")]
     [SerializeField] Sprite defAnsSprite;
     [SerializeField] Sprite corrAnsSprite;
@@ -28,7 +28,7 @@ public class quiz : MonoBehaviour
 
     public bool isComplete;
     [System.Obsolete]
-    void Start()
+    void Awake()
     {
         timer = FindObjectOfType<Timer>();
         scoreCounter = FindObjectOfType<ScoreCounter>();
@@ -40,6 +40,10 @@ public class quiz : MonoBehaviour
         timerimage.fillAmount = timer.fillFraction;
         if(timer.loadNextQS)
         {
+            if(progressBar.value == progressBar.maxValue){
+            isComplete = true;
+            return;
+            }
             hasansweredearly = false;
             getNextQuestion();
             timer.loadNextQS = false;
@@ -57,9 +61,6 @@ public class quiz : MonoBehaviour
         setButtonState(false);
         timer.cancelTimer();
         scoreText.text = "Score: " + scoreCounter.calculateScore();
-        if(progressBar.value == progressBar.maxValue){
-            isComplete = true;
-        }
     }
     void displayAnswer(int index)
     {
